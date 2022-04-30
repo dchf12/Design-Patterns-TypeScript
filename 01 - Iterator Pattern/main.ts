@@ -2,6 +2,13 @@ enum Sex {
   Man = 1,
   Woman,
 }
+
+/**
+ * 生徒
+ * @param name 名前
+ * @param sex  性別
+ *
+ */
 class Student {
   #name: string;
   #sex: number;
@@ -18,6 +25,11 @@ class Student {
     return this.#sex;
   }
 }
+
+/**
+ * 生徒の名簿
+ * @param students 全ての生徒
+ */
 class StudentList {
   protected _students: Student[] = [];
   #last = 0;
@@ -26,6 +38,7 @@ class StudentList {
   }
   /**
    * add
+   * @returns void
    */
   add(student: Student): void {
     this._students[this.#last] = student;
@@ -33,12 +46,15 @@ class StudentList {
   }
   /**
    * getStudentAt
+   * @param index 順番
+   * @returns  _students[index]
    */
   getStudentAt(index: number): Student {
     return this._students[index];
   }
   /**
    * getLastNum
+   * @returns #last
    */
   getLastNum(): number {
     return this.#last;
@@ -47,8 +63,7 @@ class StudentList {
 
 /**
  * Teacherの能力
- * 学校から与えられた名簿に自分の生徒を書き込むことができる
- * 生徒の名前を名簿の記載順に呼ぶことができる
+ * @param _studentList 生徒の名簿
  */
 abstract class Teacher {
   constructor(protected _studentList: StudentList) {}
