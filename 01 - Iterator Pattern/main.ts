@@ -39,6 +39,11 @@ class StudentList {
     return this._last;
   }
 }
+abstract class Teacher {
+  constructor(protected _studentList: StudentList) {}
+  abstract createStudentList(): void;
+  abstract callStudents(): void;
+}
 
 function main() {
   const sl = new StudentList(3);
