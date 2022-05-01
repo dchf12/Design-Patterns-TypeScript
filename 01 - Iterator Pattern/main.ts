@@ -29,6 +29,9 @@ class Student {
 /**
  * 生徒の名簿
  * @param students 全ての生徒
+ * @function add
+ * @function getStudentAt
+ * @function getLastNum
  */
 class StudentList {
   protected _students: Student[] = [];
@@ -58,6 +61,15 @@ class StudentList {
    */
   getLastNum(): number {
     return this.#last;
+  }
+}
+
+/**
+ * MyStudentList: StudentList継承
+ */
+class MyStudentList extends StudentList {
+  constructor(count: number) {
+    super(count);
   }
 }
 
