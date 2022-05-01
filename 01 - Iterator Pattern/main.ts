@@ -78,20 +78,53 @@ class MyStudentList extends StudentList {
  * @param _studentList 生徒の名簿
  */
 abstract class Teacher {
-  constructor(protected _studentList: StudentList) {}
   abstract createStudentList(): void;
   abstract callStudents(): void;
 }
 
+/**
+ * MyTeacher: Teacherクラス継承
+ * @param _studentList 生徒の名簿
+ * @function createStudentList :クラスの生徒名簿を作成
+ * @function callStudents :クラスの生徒を順番に標準出力に出力
+ */
+class MyTeacher extends Teacher {
+  #studentList: StudentList;
+  constructor() {
+    super();
+    this.#studentList = new StudentList(5);
+  }
+
+  /**
+   * createStudentList
+   * 生徒名簿作成
+   * @returns void
+   */
+  createStudentList(): void {
+    this.#studentList.add(new Student('赤井亮太', Sex.Man));
+    this.#studentList.add(new Student('赤羽里美', Sex.Woman));
+    this.#studentList.add(new Student('岡田美央', Sex.Woman));
+    this.#studentList.add(new Student('西森俊介', Sex.Man));
+    this.#studentList.add(new Student('中ノ森玲菜', Sex.Woman));
+  }
+
+  /**
+   * callStudents
+   * 生徒呼び出し
+   * @returns void
+   */
+  callStudents(): void {
+    const size = this.#studentList.getLastNum();
+    for (let i = 0; i < size; i++) {
+      console.log(this.#studentList.getStudentAt(i).name);
+    }
+  }
+}
+
 function main() {
-  const sl = new StudentList(3);
-  sl.add(new Student('name1', Sex.Man));
-  sl.add(new Student('name2', Sex.Man));
-  sl.add(new Student('name3', Sex.Woman));
-  console.log(sl);
-  console.log(sl.getStudentAt(0).name);
-  console.log(sl.getStudentAt(1).sex);
-  console.log(sl.getLastNum());
+  const you = new MyTeacher();
+  you.createStudentList();
+  you.callStudents();
 }
 
 main();
