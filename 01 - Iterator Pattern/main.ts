@@ -28,7 +28,7 @@ class Student {
 
 /**
  * 生徒の名簿
- * @param students 全ての生徒
+ * @param students Student[]
  * @function add
  * @function getStudentAt
  * @function getLastNum
@@ -40,10 +40,10 @@ class StudentList {
     this._students = new Array(count);
   }
   /**
-   * add
+   * addStudent
    * @returns void
    */
-  add(student: Student): void {
+  addStudent(student: Student): void {
     this._students[this.#last] = student;
     this.#last++;
   }
@@ -101,11 +101,11 @@ class MyTeacher extends Teacher {
    * @returns void
    */
   createStudentList(): void {
-    this.#studentList.add(new Student('赤井亮太', Sex.Man));
-    this.#studentList.add(new Student('赤羽里美', Sex.Woman));
-    this.#studentList.add(new Student('岡田美央', Sex.Woman));
-    this.#studentList.add(new Student('西森俊介', Sex.Man));
-    this.#studentList.add(new Student('中ノ森玲菜', Sex.Woman));
+    this.#studentList.addStudent(new Student('赤井亮太', Sex.Man));
+    this.#studentList.addStudent(new Student('赤羽里美', Sex.Woman));
+    this.#studentList.addStudent(new Student('岡田美央', Sex.Woman));
+    this.#studentList.addStudent(new Student('西森俊介', Sex.Man));
+    this.#studentList.addStudent(new Student('中ノ森玲菜', Sex.Woman));
   }
 
   /**
