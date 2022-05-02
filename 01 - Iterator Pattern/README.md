@@ -37,6 +37,7 @@ classDiagram
 
 ```mermaid
 classDiagram
+    direction LR
     class Aggregate{
         <<Interface>>
         iterator()
