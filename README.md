@@ -2,10 +2,10 @@
 
 Implements 23 GoF design patterns in TypeScript
 
-## Design pattern for object generation
+## Design patterns for object generation
 
 
-## Design pattern for program structure
+## Design patterns for program structure
 
 
 ## Design patterns for object behavior
