@@ -1,6 +1,6 @@
 # Iterator Pattern
 
-The Iterator pattern is a pattern that provides a way to access each element of an object that holds a collection of elements in sequence.
+The Iterator pattern is a pattern that provides a way to access each element of an object that holds a collection of elements in sequence
 
 ## Class Diagram
 
