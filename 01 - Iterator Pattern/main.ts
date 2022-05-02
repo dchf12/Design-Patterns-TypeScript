@@ -29,9 +29,9 @@ class Student {
 /**
  * 生徒の名簿
  * @param students Student[]
- * @function add
- * @function getStudentAt
- * @function getLastNum
+ * @method add
+ * @method getStudentAt
+ * @method getLastNum
  */
 class StudentList {
   protected _students: Student[] = [];
@@ -85,8 +85,8 @@ abstract class Teacher {
 /**
  * MyTeacher: Teacherクラス継承
  * @param _studentList 生徒の名簿
- * @function createStudentList :クラスの生徒名簿を作成
- * @function callStudents :クラスの生徒を順番に標準出力に出力
+ * @method createStudentList :クラスの生徒名簿を作成
+ * @method callStudents :クラスの生徒を順番に標準出力に出力
  */
 class MyTeacher extends Teacher {
   #studentList: StudentList;
