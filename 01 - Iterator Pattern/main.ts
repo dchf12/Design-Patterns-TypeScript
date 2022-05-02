@@ -1,17 +1,17 @@
 /**
  * @method iterator MyIterator
  */
-interface Aggregate {
-  iterator(): MyIterator;
+interface Aggregate<T> {
+  iterator(): MyIterator<T>;
 }
 
 /**
  * @method hasNext boolean
  * @method next object
  */
-interface MyIterator {
+interface MyIterator<T> {
   hasNext(): boolean;
-  next(): object;
+  next(): T;
 }
 
 enum Sex {
@@ -83,7 +83,7 @@ class StudentList {
 /**
  * MyStudentList: Inheritance StudentList and Implement Aggregate
  */
-class MyStudentList extends StudentList implements Aggregate {
+class MyStudentList extends StudentList implements Aggregate<Student> {
   constructor(count?: number) {
     if (count) {
       super(count);
@@ -96,7 +96,7 @@ class MyStudentList extends StudentList implements Aggregate {
    * @inheritdoc Aggregate.iterator
    * @returns MyStudentListIterator
    */
-  iterator(): MyIterator {
+  iterator(): MyIterator<Student> {
     return new MyStudentIterator(this);
   }
 }
@@ -104,7 +104,7 @@ class MyStudentList extends StudentList implements Aggregate {
 /**
  * MyStudentIterator: Implement MyIterator
  */
-class MyStudentIterator implements MyIterator {
+class MyStudentIterator implements MyIterator<Student> {
   #myStudentList: MyStudentList;
   #index: number = 0;
 
@@ -114,7 +114,7 @@ class MyStudentIterator implements MyIterator {
   hasNext(): boolean {
     return this.#myStudentList.getLastNum() > this.#index;
   }
-  next(): object {
+  next(): Student {
     const s = this.#myStudentList.getStudentAt(this.#index);
     this.#index++;
     return s;
@@ -162,10 +162,9 @@ class MyTeacher extends Teacher {
    * @returns void
    */
   callStudents(): void {
-    const itr: MyIterator = this.#studentList.iterator();
+    const itr: MyIterator<Student> = this.#studentList.iterator();
     while (itr.hasNext()) {
-      const n = itr.next() as Student;
-      console.log(n.name);
+      console.log(itr.next().name);
     }
   }
 }
