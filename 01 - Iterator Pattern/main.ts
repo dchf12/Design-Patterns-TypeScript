@@ -1,3 +1,19 @@
+/**
+ * @method iterator MyIterator
+ */
+interface Aggregate {
+  iterator(): MyIterator;
+}
+
+/**
+ * @method hasNext boolean
+ * @method next object
+ */
+interface MyIterator {
+  hasNext(): boolean;
+  next(): object;
+}
+
 enum Sex {
   Man = 1,
   Woman,
@@ -65,11 +81,43 @@ class StudentList {
 }
 
 /**
- * MyStudentList: StudentList継承
+ * MyStudentList: Inheritance StudentList and Implement Aggregate
  */
-class MyStudentList extends StudentList {
-  constructor(count: number) {
-    super(count);
+class MyStudentList extends StudentList implements Aggregate {
+  constructor(count?: number) {
+    if (count) {
+      super(count);
+    } else {
+      const count = 0;
+      super(count);
+    }
+  }
+  /**
+   * @inheritdoc Aggregate.iterator
+   * @returns MyStudentListIterator
+   */
+  iterator(): MyIterator {
+    return new MyStudentListIterator(this);
+  }
+}
+
+/**
+ * MyStudentListIterator: Implement MyIterator
+ */
+class MyStudentListIterator implements MyIterator {
+  #myStudentList: MyStudentList;
+  #index: number = 0;
+
+  constructor(list: MyStudentList) {
+    this.#myStudentList = list;
+  }
+  hasNext(): boolean {
+    return this.#myStudentList.getLastNum() > this.#index;
+  }
+  next(): object {
+    const s = this.#myStudentList.getStudentAt(this.#index);
+    this.#index++;
+    return s;
   }
 }
 
