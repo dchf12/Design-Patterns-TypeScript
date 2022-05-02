@@ -44,7 +44,7 @@ class Student {
 
 /**
  * 生徒の名簿
- * @param students Student[]
+ * @param count 生徒数
  * @method add
  * @method getStudentAt
  * @method getLastNum
@@ -97,14 +97,14 @@ class MyStudentList extends StudentList implements Aggregate {
    * @returns MyStudentListIterator
    */
   iterator(): MyIterator {
-    return new MyStudentListIterator(this);
+    return new MyStudentIterator(this);
   }
 }
 
 /**
- * MyStudentListIterator: Implement MyIterator
+ * MyStudentIterator: Implement MyIterator
  */
-class MyStudentListIterator implements MyIterator {
+class MyStudentIterator implements MyIterator {
   #myStudentList: MyStudentList;
   #index: number = 0;
 
@@ -123,7 +123,7 @@ class MyStudentListIterator implements MyIterator {
 
 /**
  * Teacherの能力
- * @param _studentList 生徒の名簿
+ * @param studentList 生徒の名簿
  */
 abstract class Teacher {
   abstract createStudentList(): void;
@@ -132,15 +132,17 @@ abstract class Teacher {
 
 /**
  * MyTeacher: Teacherクラス継承
- * @param _studentList 生徒の名簿
+ * @param studentList 生徒の名簿
  * @method createStudentList :クラスの生徒名簿を作成
  * @method callStudents :クラスの生徒を順番に標準出力に出力
  */
 class MyTeacher extends Teacher {
-  #studentList: StudentList;
-  constructor() {
+  #studentList: MyStudentList;
+  #myStudentData: StudentData;
+  constructor(sData: StudentData) {
     super();
-    this.#studentList = new StudentList(5);
+    this.#studentList = new MyStudentList(Object.keys(sData).length);
+    this.#myStudentData = sData;
   }
 
   /**
@@ -149,11 +151,9 @@ class MyTeacher extends Teacher {
    * @returns void
    */
   createStudentList(): void {
-    this.#studentList.addStudent(new Student('赤井亮太', Sex.Man));
-    this.#studentList.addStudent(new Student('赤羽里美', Sex.Woman));
-    this.#studentList.addStudent(new Student('岡田美央', Sex.Woman));
-    this.#studentList.addStudent(new Student('西森俊介', Sex.Man));
-    this.#studentList.addStudent(new Student('中ノ森玲菜', Sex.Woman));
+    for (const key in this.#myStudentData) {
+      this.#studentList.addStudent(new Student(key, this.#myStudentData[key]));
+    }
   }
 
   /**
@@ -162,15 +162,27 @@ class MyTeacher extends Teacher {
    * @returns void
    */
   callStudents(): void {
-    const size = this.#studentList.getLastNum();
-    for (let i = 0; i < size; i++) {
-      console.log(this.#studentList.getStudentAt(i).name);
+    const itr: MyIterator = this.#studentList.iterator();
+    while (itr.hasNext()) {
+      const n = itr.next() as Student;
+      console.log(n.name);
     }
   }
 }
 
+type StudentData = {
+  [key: string]: number;
+};
+const studentData: StudentData = {
+  赤井亮太: Sex.Man,
+  赤羽里美: Sex.Woman,
+  岡田美央: Sex.Woman,
+  西森俊介: Sex.Man,
+  中ノ森玲菜: Sex.Woman,
+};
+
 function main() {
-  const you = new MyTeacher();
+  const you = new MyTeacher(studentData);
   you.createStudentList();
   you.callStudents();
 }
