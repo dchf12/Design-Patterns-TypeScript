@@ -4,7 +4,7 @@ The Adapter pattern is a pattern that aims to combine classes that are incompati
 
 ## Class Diagram
 
-General class diagram of the Iterator pattern
+General class diagram of the Adapter pattern
 
 ### using inheritance
 
