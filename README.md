@@ -4,7 +4,7 @@ Implements 23 GoF design patterns in TypeScript
 
 ## Design patterns for object generation
 
--[FactoryMethod](https://github.com/furuya123/Design-Patterns-TypeScript/tree/main/04%20-%20FactoryMethod%20Pattern)
+- [FactoryMethod](https://github.com/furuya123/Design-Patterns-TypeScript/tree/main/04%20-%20FactoryMethod%20Pattern)
 
 ## Design patterns for program structure
 
