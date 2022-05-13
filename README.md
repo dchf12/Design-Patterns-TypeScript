@@ -9,6 +9,7 @@ These patterns provide various object creation mechanisms, which increase flexib
 - [FactoryMethod](https://github.com/furuya123/Design-Patterns-TypeScript/tree/main/04%20-%20FactoryMethod%20Pattern)
 - [Singleton](https://github.com/furuyad/Design-Patterns-TypeScript/tree/main/05%20-%20Singleton%20Pattern)
 - [Prototype](https://github.com/furuyad/Design-Patterns-TypeScript/tree/main/06%20-%20Prototype%20Pattern)
+- [Builder](https://github.com/furuyad/Design-Patterns-TypeScript/tree/main/07%20-%20Builder%20Pattern)
  
 ## Structural patterns
 
